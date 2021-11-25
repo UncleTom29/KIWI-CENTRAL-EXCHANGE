@@ -1,0 +1,154 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+  {{!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+      class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Money in Wallet -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Wallet</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{roundNumber2 walletAmount}} EUR</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+        <a href="/app/wallet" class="stretched-link" data-toggle="tooltip" data-placement="top" title="Go to Wallet"
+          target="_self"></a>
+      </div>
+    </div>
+  </div>
+  <!-- Money Trade -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Investments</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{roundNumber2 transAmount}} EUR</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+          </div>
+          <div class="col-auto ml-3">
+            <a name="" id="" class="btn btn-primary" href="/app/trade/buy" role="button">Buy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Total Trades -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Transactions</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{transCount}}<br />(Buys: {{transBuys}},
+              Sells:
+              {{transSells}})</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Total Buyed -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Profit</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><span id='profitAmount'></span> EUR
+              </div>
+            </div>
+          </div>
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Percentage</div>
+            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span id='profitAvg'></span> %</div>
+          </div>
+          <div class="col-auto">
+            <i id='arrowIcon' class=""></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Row -->
+
+<div class="row">
+
+  <!-- Area Chart -->
+  <div class="col-lg-6 col-xl-12">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Last 30 days evolutions of your Investments</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="evolutionChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Content Column -->
+  <div class="col-xl-8 col-lg-7 mb-4">
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Profit Investments</h6>
+      </div>
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="profitChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pie Chart -->
+  <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Investments Sources</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="chart-pie pt-4 pb-2">
+          <canvas id="balanceInvestPie"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- JS CDNs -->
+{{> jsCdn this }}
+
+<!-- Page level plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="/javascripts/private.js"></script>
+<script src="/javascripts/dashboard.js"></script>

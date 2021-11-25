@@ -1,0 +1,72 @@
+<!-- Tickets Support -->
+<div class="content">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Log Registry</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Log Items</h6>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered dataTable" id="logsTable" width="100%"
+                                        cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_desc" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1" aria-sort="descending"
+                                                    aria-label="Date: activate to sort column ascending"
+                                                    style="width: 15%;">
+                                                    Date</th>
+                                                <th tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                    aria-label="Subject: activate to sort column ascending"
+                                                    style="width: auto;">
+                                                    Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th rowspan="1" colspan="1">Date</th>
+                                                <th rowspan="1" colspan="1">Description</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {{#each logs}}
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">{{dateFormat this.date}}</td>
+                                                <td>{{this.description}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.0.7/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="/javascripts/logs.js"></script>

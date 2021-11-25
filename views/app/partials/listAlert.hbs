@@ -1,0 +1,13 @@
+{{#each this}}
+<a class="dropdown-item d-flex align-items-center" href="/app/support">
+    <div class="dropdown-list-image mr-3">
+         <i class="fa fa-envelope-o fa-lg fa-fw mr-2"></i>
+        <div class="status-indicator bg-gradient-{{supportStatus this.status}}"></div>
+    </div>
+    <div class="font-weight-bold">
+        <div class="small text-gray-500">{{this.subject}}</div>
+        <div class="text-truncate">{{this.message}}</div>
+        <div class="small text-gray-500">{{dateFormat this.date}}</div>
+    </div>
+</a>
+{{/each}}

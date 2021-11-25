@@ -1,0 +1,119 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-primary">
+                        <h4 class="card-title text-center" style="color: white">{{title}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/app/trade/{{action}}" autocomplete="off" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Type</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="typeCheck"
+                                                    id="typeStock" value="stock" aria-checked="true" checked
+                                                    {{#if hasSymbol}}disabled{{/if}}>Stock
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="typeCheck"
+                                                    id="typeCrypto" value="crypto"
+                                                    {{#if hasSymbol}}disabled{{/if}}>Cryptocurrency
+                                            </label>
+                                            <input type="hidden" name="type" id="typeId" value="{{type}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Symbol</label>
+                                        <div class="autocomplete">
+                                            <input type="text" id="symbolId" class="form-control"
+                                                {{#if hasSymbol}}readonly{{/if}} placeholder="Type to init search ..."
+                                                value="{{symbol}}">
+                                            <input type="hidden" name="symbolCode" id="symbolCodeId"
+                                                value="{{symbolCode}}">
+                                            <input type="hidden" name="symbolName" id="symbolNameId"
+                                                value="{{symbolName}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Price</label>
+                                        <input type="text" class="form-control" id="priceId" name="price"
+                                            value="{{price}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Quantity</label>
+                                        <input type="number" class="form-control" placeholder="Quantity" min="0"
+                                            {{#if units}}max="{{units}}" {{/if}} name="units" id="unitsId"
+                                            value="{{units}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Total</label>
+                                        <input type="number" class="form-control" disabled id="totalId"
+                                            placeholder="Total" min="0" value="0">
+                                        <input type="hidden" id="walletAmountId" value="{{walletAmount}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="/app/trade" class="btn btn-secondary pull-right ml-2">Cancel</a>
+                                    <button type="submit" class="btn btn-primary pull-right">{{title}}</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{#if errorMessage}}
+                                    <hr>
+                                    <p class="btn btn-google btn-user btn-block">{{errorMessage}}</p>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Last 30 days evolutions of
+                                                <span id="symbolGraph">TBD</span></h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <div class="chart-area">
+                                                <canvas id="evolutionChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS CDNs -->
+{{> jsCdn this }}
+
+<!-- Page level plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="/javascripts/private.js"></script>
+<script src="/javascripts/tradeSearch.js"></script>

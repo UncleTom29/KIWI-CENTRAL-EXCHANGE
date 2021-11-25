@@ -1,0 +1,78 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow mb-4">
+          <div class="card-header bg-gradient-primary">
+            <h4 class="card-title text-center text-white">Support</h4>
+            <p class="card-category text-center text-white">Message for Support</p>
+          </div>
+          <div class="card-body">
+            <form action="/app/support/ticket" method="POST">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Name</label>
+                    <input type="text" class="form-control" name="name" value="{{user.name}}" placeholder="Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Email address</label>
+                    <input type="email" name="email" class="form-control" name="email" value="{{user.email}}"
+                      placeholder="email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Subject</label>
+                    <input type="text" class="form-control" name="subject" placeholder="Subject Message">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+
+                  <div class="form-group">
+                    <label class="bmd-label-floating">
+                      Message</label>
+                    <textarea class="form-control" rows="5"
+                      placeholder="Describe in as much detail as possible what is your question to support"
+                      name="message"></textarea>
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <a href="/app/support" class="btn btn-secondary pull-left">
+                    Cancel</a>
+                  <div class="clearfix"></div>
+                  {{#if errorMessage}}
+                  <hr>
+                  <p class="btn btn-google btn-user btn-block">{{errorMessage}}</p>
+                  {{/if}}
+                </div>
+                <div class="col-md-6 ">
+                  <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+                  <div class="clearfix"></div>
+                  {{#if errorMessage}}
+                  <hr>
+                  <p class="btn btn-google btn-user btn-block">{{errorMessage}}</p>
+                  {{/if}}
+                </div>
+
+              </div>
+          </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- JS CDNs -->
+{{> jsCdn this }}

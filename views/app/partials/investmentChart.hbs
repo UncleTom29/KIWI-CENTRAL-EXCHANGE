@@ -1,0 +1,19 @@
+<!-- Donut Chart -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Investments Sources</h6>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <div class="chart-pie pt-4 pb-2">
+            <canvas id="balanceInvestPie"></canvas>
+            {{#each balanceInvest}}
+            <ul class="invisible">
+                <li class="data-graph" class="data-graph" data-name="{{this._id.name}} ({{this._id.symbol}})"
+                    data-amount="{{roundNumber2 this.amount}}"></li>
+            </ul>
+            {{/each}}
+        </div>
+    </div>
+</div>

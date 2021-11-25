@@ -1,0 +1,147 @@
+<div class="content">
+    <!-- Content Row -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Wallet</h1>
+    </div>
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Balance Card BEGIN -->
+        {{> balanceCard this }}
+        <!-- Balance Card END-->
+
+        <!-- Buy  Card  BEGIN -->
+        {{> buyCard this }}
+        <!-- Buy Card END-->
+
+        <!-- Sell Card BEGIN -->
+        {{> sellCard this }}
+        <!-- Sell Card END-->
+
+        <!-- Benefits Card BEGIN -->
+        {{> benefitsCard this }}
+        <!-- Balance Card END -->
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-xl-7 col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Wallet</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Trading:</div>
+                            <a class="dropdown-item" href="#">Deposit</a>
+                            <a class="dropdown-item" href="#">Withdraw</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered dataTable" id="walletTable" width="100%"
+                                        cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_desc" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1" aria-sort="descending"
+                                                    aria-label="Date: activate to sort column ascending"
+                                                    style="width: 75px;">
+                                                    Date</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Type: activate to sort column ascending"
+                                                    style="width: 50px;">
+                                                    Type</th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="amount: activate to sort column ascending"
+                                                    style="width: 75px;">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th rowspan="1" colspan="1">Date</th>
+                                                <th class="text-center" rowspan="1" colspan="1">Type</th>
+                                                <th class="text-center" rowspan="1" colspan="1">Amount</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {{#each wallet.movements }}
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1 text-center">{{dateFormatDay this.date}}</td>
+                                                <td class="text-center">{{this.type}}</td>
+                                                <td class="text-right">{{roundNumber2 this.amount}} EUR</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Line Chart -->
+        <div class="col-xl-5 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Wallet Overview</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="lineChart"></canvas>
+                        {{#each wallet.movements}}
+                        <ul class="invisible">
+                            <li id="line" data-name="{{this.type}}" data-date="{{dateFormatDay this.date}}"
+                                data-amount="{{roundNumber2 this.amount}}">
+                            </li>
+                        </ul>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donut Chart BEGIN -->
+            {{> investmentChart this }}
+            <!-- Donut Chart END -->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.0.7/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+{{!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script> --}}
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="/javascripts/private.js"></script>
+
+<script src="/javascripts/wallet.js"></script>

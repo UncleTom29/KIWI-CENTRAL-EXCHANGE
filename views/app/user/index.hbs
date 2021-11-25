@@ -1,0 +1,126 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow mb-4">
+          <div class="card-header bg-gradient-primary">
+            <h4 class="card-title text-center text-white">Profile</h4>
+            <p class="card-category text-center text-white">Complete your profile</p>
+
+            <div  class="card-avatar">
+              <a href="">
+                <img id="avatarProfile" class="img-fluid img-profile rounded-circle float-left" 
+                  src="{{user.imgPath}}" />
+              </a>
+            </div>
+            <div class="card-body float-right text-center">
+
+              <h4 class="card-title text-white">{{user.name}}</h4>
+              <h6 class="card-category text-white">{{user.occupation}}</h6>
+              <h6 class="card-category text-white">{{user.city}}</h6>
+              <h6 class="card-category text-white">{{user.country}}</h6>
+              <h6 class="card-title text-white">{{user.about}}</h6>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- Begin Form User -->
+            <form action="/app/user" method="POST" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <!-- Photo Upload -->
+                    <label for="photo" class="custom-file-upload">
+                      <i class="fa fa-cloud-upload"></i> Photo
+                    </label>
+                    <input class="btn btn-primary" id="photo" type="file" name="photo">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Ocupation</label>
+                    <input type="text" name="occupation" class="form-control" value="{{user.occupation}}"
+                      placeholder="Ocupation">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Email address</label>
+                    <input type="email" name="email" class="form-control" value="{{user.email}}" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Name</label>
+                    <input type="text" name="name" class="form-control" value="{{user.name}}" placeholder="Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Password</label>
+                    <input type="password" name="password" class="form-control" value="{{user.password}}"
+                      placeholder="password" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Adress</label>
+                    <input type="text" name="adress" class="form-control" value="{{user.adress}}" placeholder="Adress">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">City</label>
+                    <input type="text" name="city" class="form-control" value="{{user.city}}" placeholder="City">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Country</label>
+                    <input type="text" name="country" class="form-control" value="{{user.country}}"
+                      placeholder="Country">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Postal Code</label>
+                    <input type="text" name="postalCode" class="form-control" value="{{user.postalCode}}"
+                      placeholder="Postal Code">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">
+                      About Me</label>
+                    <textarea class="form-control" rows="3" name="about" 
+                      placeholder="Add a short presentation to let people know more about you." autocomplete >{{user.about}}</textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                  <div class="clearfix"></div>
+                  {{#if errorMessage}}
+                  <hr>
+                  <p class="btn btn-google btn-user btn-block">{{errorMessage}}</p>
+                  {{/if}}
+                </div>
+              </div>
+            </form> <!-- End Form User -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS CDNs -->
+{{> jsCdn this }}

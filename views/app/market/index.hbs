@@ -1,0 +1,32 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Markets</h1>
+</div>
+<!-- ======= Markets Section ======= -->
+<div id="market" class="market">
+    <div class="container-fluid card shadow mb-4">
+        <br>
+        <section>
+
+            <h4 class="m-0 font-weight-bold text-primary">Cryptocurrency<a name="" id=""
+                    class="btn btn-primary float-right" href="/app/trade/buy" role="button">Trade</a></h4>
+            <br>
+            <!-- Crypto Widget BEGIN -->
+            {{> cryptoWidget this }}
+            <!-- Crypto Widget END-->
+
+        </section>
+        <br><br><br>
+        <section>
+            <h4 class="m-0 font-weight-bold text-primary">Market Data<a name="" id=""
+                    class="btn btn-primary float-right" href="/app/trade/buy" role="button">Trade</a></h4>
+            <br>
+            <!-- Market Widget BEGIN -->
+            {{> marketWidget this }}
+            <!-- Market Widget END-->
+
+        </section>
+        <br><br><br>
+    </div>
+</div>
+<!-- jsCDNs -->
+{{> jsCdn this }}

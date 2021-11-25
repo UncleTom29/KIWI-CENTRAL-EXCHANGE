@@ -1,0 +1,75 @@
+<!-- Tickets Support -->
+<div class="content">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Tickets Support</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Messages</h6>
+                    <a name="" id="" class="btn btn-primary float-right" href="/app/support/ticket" role="button">New
+                        Ticket</a>
+                </div>
+                <div class="card-body">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-bordered dataTable" id="supportTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="descending"
+                                                aria-label="Date: activate to sort column ascending"
+                                                style="width: 15%;">
+                                                Date</th>
+                                            <th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="descending"
+                                                aria-label="Subject: activate to sort column ascending"
+                                                style="width: 20%;">
+                                                Subject</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Message: activate to sort column ascending"
+                                                style="width: 100px;">
+                                                Message</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Status: activate to sort column ascending"
+                                                style="width: 20%;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <th rowspan="1" colspan="1">Date</th>
+                                        <th rowspan="1" colspan="1">Subject</th>
+                                        <th rowspan="1" colspan="1">Message</th>
+                                        <th rowspan="1" colspan="1">Status</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {{#each supports}}
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">{{dateFormat this.date}}</td>
+                                            <td>{{this.subject}}</td>
+                                            <td>{{this.message}}</td>
+                                            <td><span class="badge badge-pill badge-{{supportStatus this.status}}">{{this.status}}</span></td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS CDNs -->
+{{> jsCdn this }}
+
+<!-- JS Data Table -->
+{{> jsDataTables this }}
+
+<script src="/javascripts/private.js"></script>
+<script src="/javascripts/support.js"></script>
